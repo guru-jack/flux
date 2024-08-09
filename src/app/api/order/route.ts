@@ -1,7 +1,7 @@
 
 import { getCurrectUser } from "@/actions/getCurrentUser";
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma"; // Ensure prisma is correctly imported
+import prisma from "@/lib/prismadb";
 
 
 
