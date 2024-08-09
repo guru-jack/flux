@@ -60,7 +60,7 @@ const AddRating = ({ product, user }: RattingProps) => {
         reset();
       })
       .catch((error) => {
-        toast.error("Sorry. something happened!");
+        toast.error("Sorry. something happened!"+error);
       })
       .finally(() => {
         setIsloading(false);
