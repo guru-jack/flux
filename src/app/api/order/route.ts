@@ -3,26 +3,34 @@ import { getCurrectUser } from "@/actions/getCurrentUser";
 import { NextResponse } from "next/server";
 
 
-export async function PUT(request: Request)
-{
-    const currentUser = await getCurrectUser()
-    if(!currentUser) return NextResponse.error()
-
-    if(currentUser.role != "ADMIN")
-        {
+export async function PUT(request: Request) {
+    try {
+        const currentUser = await getCurrentUser();
+        if (!currentUser) {
+            console.error("User not found");
             return NextResponse.error();
         }
 
+        if (currentUser.role !== "ADMIN") {
+            console.error("Unauthorized access");
+            return NextResponse.error();
+        }
 
-    const body = await request.json();
-    const{id , deliveryStatus} = body;
+        const body = await request.json();
+        const { id, deliveryStatus } = body;
 
-    const order = await prisma?.order.update({
-        where:{id: id},
-        data:{deliveryStatus},
-        
-    })
-    return NextResponse.json(order);
+        console.log("Updating order with ID:", id, "to status:", deliveryStatus);
+
+        const order = await prisma.order.update({
+            where: { id: id },
+            data: { deliveryStatus },
+        });
+
+        return NextResponse.json(order);
+    } catch (error) {
+        console.error("Error during PUT request:", error);
+        return NextResponse.error();
+    }
 }
 
 
