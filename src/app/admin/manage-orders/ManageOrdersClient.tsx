@@ -187,7 +187,7 @@ const ManageOrdersClient = ({ orders }: ManageOrdersClientProps) => {
         router.refresh();
       })
       .catch((err) => {
-        toast.error("Something went wrong");
+        toast.error("Something went wrong"+ err);
         console.log(err);
       });
   }, []);
