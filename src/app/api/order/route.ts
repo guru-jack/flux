@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 
 export async function PUT(request: Request) {
     try {
-        const currentUser = await getCurrentUser();
+        const currentUser = await getCurrectUser();
         if (!currentUser) {
             console.error("User not found");
             return NextResponse.error();
