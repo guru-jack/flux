@@ -1,6 +1,8 @@
 
 import { getCurrectUser } from "@/actions/getCurrentUser";
 import { NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma"; // Ensure prisma is correctly imported
+
 
 
 export async function PUT(request: Request) {
